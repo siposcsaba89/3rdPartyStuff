@@ -1,6 +1,7 @@
 # 3rdPrtyStuff building
 
 Prerequisites: 
+
 	cmake 3.0 or later
 	git 2.7 or later
 	For windows builds: Visual studio 2015 or 2013
