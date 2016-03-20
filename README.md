@@ -2,8 +2,11 @@
 
 
 To build the 3rdPartys we need do the following:
+
 	1. clone this repo:
+	
 		git clone https://github.com/siposcsaba89/3rdPartyStuff.git
+		
 	2. Building 3rdParties on Windows:
 		a) Open git bash
 		b) Building with visual studio run the build_vs.sh script:
