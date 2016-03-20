@@ -1,5 +1,13 @@
 # 3rdPrtyStuff building
 
+Prerequisites: 
+	cmake 3.0 or later
+	git 2.7 or later
+	For windows builds: Visual studio 2015 or 2013
+	For android build on Windows : android-ndk-r9c or later
+
+Note: the armeabi toolchain is buggy in the ndk-r10, r11 versions and not working on phones
+	running android 2.1
 
 To build the 3rdPartys we need do the following:
 
