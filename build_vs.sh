@@ -47,7 +47,8 @@ do
 	cd ../
 	mkdir -p build/$1/$proj
 	cd build/$1/$proj
-	opts=$proj_FLAGS
+	opts=$proj"_FLAGS"
+        echo "$proj options are: $opts"
 	echo ${!opts}
 	cmake ../../../sources/$proj -G "$generator" -DCMAKE_DEBUG_POSTFIX=_d -DCMAKE_INSTALL_PREFIX=$PWD/../../../install/$1/ -DBUILD_SHARED=0 ${!opts} -DCMAKE_BUILD_TYPE=Release
 	cmake --build . --config Release --target install
