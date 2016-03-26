@@ -27,13 +27,29 @@ fi
 mkdir -p sources
 cd sources
 
-for proj in glfw glew freetype
+
+
+glfw_FLAGS=""
+projs=""
+if [ "$1" == "linux" ]; then
+	glfw_FLAGS="$glfw_FLAGS -DGLFW_CLIENT_LIBRARY=glesv2 -DGLFW_USE_EGL=1"
+	projs="glfw freetype"
+else
+	projs="glfw freetype glew"
+fi
+
+glew_FLAGS=""
+freetype_FLAGS=""
+
+for proj in $projs
 do
 	if cd $proj 2> /dev/null; then git pull; cd ..; else git clone https://github.com/siposcsaba89/$proj.git; fi
 	cd ../
 	mkdir -p build/$1/$proj
 	cd build/$1/$proj
-	cmake ../../../sources/$proj -G "$generator" -DCMAKE_DEBUG_POSTFIX=_d -DCMAKE_INSTALL_PREFIX=$PWD/../../../install/$1/ -DBUILD_SHARED=0 -DCMAKE_BUILD_TYPE=Release
+	opts=$proj_FLAGS
+	echo ${!opts}
+	cmake ../../../sources/$proj -G "$generator" -DCMAKE_DEBUG_POSTFIX=_d -DCMAKE_INSTALL_PREFIX=$PWD/../../../install/$1/ -DBUILD_SHARED=0 ${!opts} -DCMAKE_BUILD_TYPE=Release
 	cmake --build . --config Release --target install
 	cmake ../../../sources/$proj -G "$generator" -DCMAKE_BUILD_TYPE=Debug
 	cmake --build . --config Debug --target install
