@@ -31,7 +31,11 @@ cd sources
 
 glfw_FLAGS=""
 projs=""
-if [ "$1" == "linux" ]; then
+
+
+if [ -z "$AMD_GLES_SDK" ]; then echo "var is unset"; else echo "var is set to '$AMD_GLES_SDK'"; fi
+
+if [[ ("$1" == "linux") || !(-z "$AMD_GLES_SDK")]]; then
 	glfw_FLAGS="$glfw_FLAGS -DGLFW_CLIENT_LIBRARY=glesv2 -DGLFW_USE_EGL=1"
 	projs="glfw freetype"
 else
@@ -48,7 +52,7 @@ do
 	mkdir -p build/$1/$proj
 	cd build/$1/$proj
 	opts=$proj"_FLAGS"
-        echo "$proj options are: $opts"
+    echo "$proj options are: ${!opts}"
 	echo ${!opts}
 	cmake ../../../sources/$proj -G "$generator" -DCMAKE_DEBUG_POSTFIX=_d -DCMAKE_INSTALL_PREFIX=$PWD/../../../install/$1/ -DBUILD_SHARED=0 ${!opts} -DCMAKE_BUILD_TYPE=Release
 	cmake --build . --config Release --target install
