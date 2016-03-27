@@ -29,11 +29,11 @@ cd sources
 
 
 
-glfw_FLAGS=""
+glfw_FLAGS="-DGLFW_BUILD_EXAMPLES=0 -DGLFW_BUILD_TESTS=0"
 projs=""
 
 
-if [ -z "$AMD_GLES_SDK" ]; then echo "var is unset"; else echo "var is set to '$AMD_GLES_SDK'"; fi
+if [ -z "$AMD_GLES_SDK" ]; then echo "AMD_GLES_SDK is unset"; else echo "AMD_GLES_SDK is set to '$AMD_GLES_SDK'"; fi
 
 if [[ ("$1" == "linux") || !(-z "$AMD_GLES_SDK")]]; then
 	glfw_FLAGS="$glfw_FLAGS -DGLFW_CLIENT_LIBRARY=glesv2 -DGLFW_USE_EGL=1"
