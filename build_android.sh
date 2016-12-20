@@ -7,12 +7,19 @@ if [ "$#" -ne 1 ]; then
 fi
 
 
+cmake_prefix_path="-DCMAKE_PREFIX_PATH=$PWD/install/$1"
+echo "Cmake prefix path set to $cmake_prefix_path"
+
+
 mkdir -p sources
 cd sources
 
-assimp_FLAGS="-DASSIMP_BUILD_ASSIMP_TOOLS=0"
+projs="freetype assimp"
 
-for proj in freetype assimp
+assimp_FLAGS="-DASSIMP_BUILD_ASSIMP_TOOLS=0 -DBUILD_EXAMPLES=0 -DBUILD_TESTING=0 $cmake_prefix_path"
+freetype_FLAGS="$cmake_prefix_path"
+
+for proj in $projs
 do
 	if cd $proj 2> /dev/null; then git pull; cd ..; else git clone https://github.com/siposcsaba89/$proj.git; fi
     cd ../

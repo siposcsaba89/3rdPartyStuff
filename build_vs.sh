@@ -24,27 +24,29 @@ else
 fi
 
 
+cmake_prefix_path="-DCMAKE_PREFIX_PATH=$PWD/install/$1"
+echo "Cmake prefix path set to $cmake_prefix_path"
+
+
 mkdir -p sources
 cd sources
 
 
 
-glfw_FLAGS="-DGLFW_BUILD_EXAMPLES=0 -DGLFW_BUILD_TESTS=0"
-assimp_FLAGS="-DBUILD_EXAMPLES=0 -DBUILD_TESTING=0"
-projs=""
-
-
 if [ -z "$AMD_GLES_SDK" ]; then echo "AMD_GLES_SDK is unset"; else echo "AMD_GLES_SDK is set to '$AMD_GLES_SDK'"; fi
 
 if [[ ("$1" == "linux") || !(-z "$AMD_GLES_SDK")]]; then
-	glfw_FLAGS="$glfw_FLAGS -DGLFW_CLIENT_LIBRARY=glesv2 -DGLFW_USE_EGL=1"
+	glfw_FLAGS="-DGLFW_CLIENT_LIBRARY=glesv2 -DGLFW_USE_EGL=1"
 	projs="glfw zlib freetype assimp"
 else
 	projs="glfw zlib freetype glew assimp"
 fi
 
 glew_FLAGS=""
-freetype_FLAGS=""
+freetype_FLAGS="$cmake_prefix_path"
+glfw_FLAGS="$glfw_FLAGS -DGLFW_BUILD_EXAMPLES=0 -DGLFW_BUILD_TESTS=0"
+assimp_FLAGS="-DBUILD_EXAMPLES=0 -DBUILD_TESTING=0 $cmake_prefix_path"
+
 
 for proj in $projs
 do
