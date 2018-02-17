@@ -12,6 +12,10 @@ if [ "$1" == "vs2015" ]; then
 	generator="Visual Studio 14 Win64"
 elif [ "$1" == "vs2015-x86" ]; then
 	generator="Visual Studio 14"
+elif [ "$1" == "vs2017" ]; then
+	generator="Visual Studio 15 Win64"
+elif [ "$1" == "vs2017-x86" ]; then
+	generator="Visual Studio 15"
 elif [ "$1" == "vs2013" ]; then
 	generator="Visual Studio 12 Win64"
 elif [ "$1" == "vs2013-x86" ]; then
@@ -45,7 +49,7 @@ fi
 glew_FLAGS=""
 freetype_FLAGS="$cmake_prefix_path"
 glfw_FLAGS="$glfw_FLAGS -DGLFW_BUILD_EXAMPLES=0 -DGLFW_BUILD_TESTS=0"
-assimp_FLAGS="-DBUILD_EXAMPLES=0 -DBUILD_TESTING=0 $cmake_prefix_path"
+assimp_FLAGS="-DBUILD_EXAMPLES=0 -DBUILD_TESTING=0 $cmake_prefix_path -DASSIMP_BUILD_ASSIMP_TOOLS=0"
 
 
 for proj in $projs

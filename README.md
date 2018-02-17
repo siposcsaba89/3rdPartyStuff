@@ -19,7 +19,7 @@ To build the 3rdPartys we need do the following:
 	2. Building 3rdParties on Windows:
 		a) Open git bash
 		b) Building with visual studio run the build_vs.sh script:
-			*) ./build_vs.sh [vs2015|vs2015-x86|vs2013|vs2013-x86]
+			*) ./build_vs.sh [vs2017|vs2017-x86|vs2015|vs2015-x86|vs2013|vs2013-x86]
 				-) vs2015 - builds the library with 64 bit Visual Studio 2015 comppiler
 				-) vs2013 - builds the library with 64 bit Visual Studio 2013 comppiler
 				-) vs2015-x86 - builds the library with 32 bit Visual Studio 2015 comppiler
