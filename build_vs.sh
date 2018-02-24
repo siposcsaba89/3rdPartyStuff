@@ -41,9 +41,9 @@ if [ -z "$AMD_GLES_SDK" ]; then echo "AMD_GLES_SDK is unset"; else echo "AMD_GLE
 
 if [[ ("$1" == "linux") || !(-z "$AMD_GLES_SDK")]]; then
 	glfw_FLAGS="-DGLFW_CLIENT_LIBRARY=glesv2 -DGLFW_USE_EGL=1"
-	projs="glfw zlib freetype assimp imgui"
+	projs="glfw zlib freetype assimp imgui napalm"
 else
-	projs="glfw zlib freetype glew assimp imgui"
+	projs="glfw zlib freetype glew assimp imgui napalm"
 fi
 
 glew_FLAGS=""
