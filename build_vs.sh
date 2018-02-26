@@ -61,7 +61,7 @@ do
 	opts=$proj"_FLAGS"
     echo "$proj options are: ${!opts}"
 	echo ${!opts}
-	cmake ../../../sources/$proj -G "$generator" -DCMAKE_DEBUG_POSTFIX=_d -DCMAKE_INSTALL_PREFIX=$PWD/../../../install/$1/ -DBUILD_SHARED=0 ${!opts} -DCMAKE_BUILD_TYPE=Release
+	cmake ../../../sources/$proj -G "$generator" -DCMAKE_DEBUG_POSTFIX=_d -DCMAKE_INSTALL_PREFIX=$PWD/../../../install/$1/ -DCMAKE_PREFIX_PATH=$PWD/../../../install/$1/ -DBUILD_SHARED=0 ${!opts} -DCMAKE_BUILD_TYPE=Release
 	cmake --build . --config Release --target install
 	cmake ../../../sources/$proj -G "$generator" -DCMAKE_BUILD_TYPE=Debug
 	cmake --build . --config Debug --target install
