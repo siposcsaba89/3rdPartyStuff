@@ -41,16 +41,17 @@ if [ -z "$AMD_GLES_SDK" ]; then echo "AMD_GLES_SDK is unset"; else echo "AMD_GLE
 
 if [[ ("$1" == "linux") || !(-z "$AMD_GLES_SDK")]]; then
 	glfw_FLAGS="-DGLFW_CLIENT_LIBRARY=glesv2 -DGLFW_USE_EGL=1"
-	projs="glfw zlib freetype assimp imgui napalm"
+	projs="glfw zlib freetype assimp imgui napalm libjpeg-turbo"
 else
-	projs="glfw zlib freetype glew assimp imgui napalm"
+	projs="glfw zlib freetype glew assimp imgui napalm libjpeg-turbo"
+	#projs="libjpeg-turbo"
 fi
 
 glew_FLAGS=""
 freetype_FLAGS="$cmake_prefix_path"
 glfw_FLAGS="$glfw_FLAGS -DGLFW_BUILD_EXAMPLES=0 -DGLFW_BUILD_TESTS=0"
 assimp_FLAGS="-DBUILD_EXAMPLES=0 -DBUILD_TESTING=0 $cmake_prefix_path -DASSIMP_BUILD_ASSIMP_TOOLS=0"
-
+libjpeg_turbo_FLAGS="-DCMAKE_DEBUG_POSTFIX=_d -DENABLE_SHARED=0 -DNASM=/e/tools/bin/nasm.exe"
 
 for proj in $projs
 do
@@ -58,7 +59,8 @@ do
 	cd ../
 	mkdir -p build/$1/$proj
 	cd build/$1/$proj
-	opts=$proj"_FLAGS"
+	opts="$proj""_FLAGS"
+    opts=$(echo $opts | tr - _)
     echo "$proj options are: ${!opts}"
 	echo ${!opts}
 	cmake ../../../sources/$proj -G "$generator" -DCMAKE_DEBUG_POSTFIX=_d -DCMAKE_INSTALL_PREFIX=$PWD/../../../install/$1/ -DCMAKE_PREFIX_PATH=$PWD/../../../install/$1/ -DBUILD_SHARED=0 ${!opts} -DCMAKE_BUILD_TYPE=Release
