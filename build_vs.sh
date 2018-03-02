@@ -43,8 +43,8 @@ if [[ ("$1" == "linux") || !(-z "$AMD_GLES_SDK")]]; then
 	glfw_FLAGS="-DGLFW_CLIENT_LIBRARY=glesv2 -DGLFW_USE_EGL=1"
 	projs="glfw zlib freetype assimp imgui napalm libjpeg-turbo"
 else
-	projs="glfw zlib freetype glew assimp imgui napalm libjpeg-turbo libexpat"
-	#projs="libexpat"
+	projs="glfw zlib freetype glew assimp imgui napalm libjpeg-turbo libexpat adobe_xmp dng_sdk"
+	#projs="adobe_xmp"
 fi
 
 glew_FLAGS=""
@@ -54,10 +54,23 @@ assimp_FLAGS="-DBUILD_EXAMPLES=0 -DBUILD_TESTING=0 $cmake_prefix_path -DASSIMP_B
 libjpeg_turbo_FLAGS="-DCMAKE_DEBUG_POSTFIX=_d -DENABLE_SHARED=0 -DNASM=/e/tools/bin/nasm.exe"
 libexpat_CMAKELIST="../../../sources/libexpat/expat/"
 libexpat_FLAGS="-DBUILD_shared=0 -DCMAKE_DEBUG_POSTFIX=_d"
+adobe_xmp_ORIGIN="https://siposcsaba89.visualstudio.com/DefaultCollection/_git/adobe_xmp"
+adobe_xmp_FLAGS="-DXMP_BUILD_STATIC=1 -DCMAKE_DEBUG_POSTFIX=_d"
+adobe_xmp_CMAKELIST="../../../sources/adobe_xmp/build/"
+dng_sdk_ORIGIN="https://siposcsaba89.visualstudio.com/DefaultCollection/_git/dng_sdk"
+dng_sdk_FLAGS="-DBUILD_EXAMPLES=1 -DCMAKE_DEBUG_POSTFIX=_d"
 
 for proj in $projs
 do
-	if cd $proj 2> /dev/null; then git pull; cd ..; else git clone https://github.com/siposcsaba89/$proj.git; fi
+    proj_orig=$(echo $proj | tr - _)"_ORIGIN";
+    if [ -z "${!proj_orig}" ]; then
+        proj_ORIGIN=" https://github.com/siposcsaba89/$proj.git"
+    else
+        proj_ORIGIN="${!proj_orig}"
+    fi
+    echo "Origin: $proj_ORIGIN"
+    
+	if cd $proj 2> /dev/null; then git pull; cd ..; else git clone $proj_ORIGIN; fi
 	cd ../
 	mkdir -p build/$1/$proj
 	cd build/$1/$proj
