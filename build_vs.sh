@@ -41,10 +41,10 @@ if [ -z "$AMD_GLES_SDK" ]; then echo "AMD_GLES_SDK is unset"; else echo "AMD_GLE
 
 if [[ ("$1" == "linux") || !(-z "$AMD_GLES_SDK")]]; then
 	glfw_FLAGS="-DGLFW_CLIENT_LIBRARY=glesv2 -DGLFW_USE_EGL=1"
-	projs="glfw zlib freetype assimp imgui napalm libjpeg-turbo"
+	projs="glfw zlib freetype assimp imgui libjpeg-turbo"
 else
-	projs="glfw zlib freetype glew assimp imgui napalm libjpeg-turbo libexpat adobe_xmp dng_sdk"
-	#projs="adobe_xmp"
+	projs="glfw zlib freetype glew assimp imgui libjpeg-turbo libexpat adobe_xmp dng_sdk eigen"
+	#projs="eigen"
 fi
 
 glew_FLAGS=""
@@ -59,6 +59,8 @@ adobe_xmp_FLAGS="-DXMP_BUILD_STATIC=1 -DCMAKE_DEBUG_POSTFIX=_d"
 adobe_xmp_CMAKELIST="../../../sources/adobe_xmp/build/"
 dng_sdk_ORIGIN="https://siposcsaba89.visualstudio.com/DefaultCollection/_git/dng_sdk"
 dng_sdk_FLAGS="-DBUILD_EXAMPLES=1 -DCMAKE_DEBUG_POSTFIX=_d"
+eigen_ORIGIN="https://siposcsaba89.visualstudio.com/DefaultCollection/_git/eigen"
+eigen_FLAGS="-DBUILD_TESTING=1 -DCMAKE_DEBUG_POSTFIX=_d"
 
 for proj in $projs
 do
