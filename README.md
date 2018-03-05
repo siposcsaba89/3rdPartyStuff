@@ -19,11 +19,14 @@ To build the 3rdPartys we need do the following:
 	2. Building 3rdParties on Windows:
 		a) Open git bash
 		b) Building with visual studio run the build_vs.sh script:
-			*) ./build_vs.sh [vs2017|vs2017-x86|vs2015|vs2015-x86|vs2013|vs2013-x86]
+			*) ./build_vs.sh [vs2017|vs2017-x86|vs2015|vs2015-x86|vs2013|vs2013-x86|linux]
+				-) vs2017 - builds the library with 64 bit Visual Studio 2017 comppiler
+				-) vs2017-x86 - builds the library with 32 bit Visual Studio 2017 comppiler
 				-) vs2015 - builds the library with 64 bit Visual Studio 2015 comppiler
 				-) vs2013 - builds the library with 64 bit Visual Studio 2013 comppiler
 				-) vs2015-x86 - builds the library with 32 bit Visual Studio 2015 comppiler
 				-) vs2013-x86 - builds the library with 32 bit Visual Studio 2013 comppiler
+				-) linux - generate Unix makefile
 		c) Building with android NDK (need to set ANDROID_NDK environment variable to point the android-ndk-r## location)
 			*) ./build_android.sh [armeabi|armeabi-v7a|arm64-v8a|x86|x86_64]
 				-) armeabi - build with the armeabi toolchain (soft float, armv6), 32-bit

@@ -2,7 +2,7 @@
 set -e
 
 if [ "$#" -ne 1 ]; then
-    printf "Illegal number of parameters!\n\n Usage: build_vs.sh [vs2015|vs2015-x86|vs2013|vs2013-x86] \n"
+    printf "Illegal number of parameters!\n\n Usage: build_vs.sh [vs2017|vs2017-x86|vs2015|vs2015-x86|vs2013|vs2013-x86|linux] \n"
 	exit 1
 fi
 
