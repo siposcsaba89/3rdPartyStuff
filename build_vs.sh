@@ -41,17 +41,17 @@ if [ -z "$AMD_GLES_SDK" ]; then echo "AMD_GLES_SDK is unset"; else echo "AMD_GLE
 
 if [[ ("$1" == "linux") || !(-z "$AMD_GLES_SDK")]]; then
 	glfw_FLAGS="-DGLFW_CLIENT_LIBRARY=glesv2 -DGLFW_USE_EGL=1"
-	projs="glfw zlib freetype assimp imgui libjpeg-turbo"
+	projs="glfw zlib freetype assimp imgui libjpeg-turbo libexpat adobe_xmp dng_sdk eigen"
+        #assimp
 else
-	projs="glfw zlib freetype glew assimp imgui libjpeg-turbo libexpat adobe_xmp dng_sdk eigen"
-	#projs="eigen"
+	projs="glfw zlib freetype glew imgui libjpeg-turbo libexpat adobe_xmp dng_sdk eigen"
 fi
 
 glew_FLAGS=""
 freetype_FLAGS="$cmake_prefix_path"
 glfw_FLAGS="$glfw_FLAGS -DGLFW_BUILD_EXAMPLES=0 -DGLFW_BUILD_TESTS=0"
 assimp_FLAGS="-DBUILD_EXAMPLES=0 -DBUILD_TESTING=0 $cmake_prefix_path -DASSIMP_BUILD_ASSIMP_TOOLS=0"
-libjpeg_turbo_FLAGS="-DCMAKE_DEBUG_POSTFIX=_d -DENABLE_SHARED=0 -DNASM=/e/tools/bin/nasm.exe"
+libjpeg_turbo_FLAGS="-DCMAKE_DEBUG_POSTFIX=_d -DENABLE_SHARED=0"
 libexpat_CMAKELIST="../../../sources/libexpat/expat/"
 libexpat_FLAGS="-DBUILD_shared=0 -DCMAKE_DEBUG_POSTFIX=_d"
 adobe_xmp_ORIGIN="https://siposcsaba89.visualstudio.com/DefaultCollection/_git/adobe_xmp"
