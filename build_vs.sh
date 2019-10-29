@@ -16,6 +16,8 @@ elif [ "$1" == "vs2017" ]; then
 	generator="Visual Studio 15 Win64"
 elif [ "$1" == "vs2017-x86" ]; then
 	generator="Visual Studio 15"
+elif [ "$1" == "vs2019" ]; then
+	generator="Visual Studio 16"
 elif [ "$1" == "vs2013" ]; then
 	generator="Visual Studio 12 Win64"
 elif [ "$1" == "vs2013-x86" ]; then
@@ -54,10 +56,10 @@ assimp_FLAGS="-DBUILD_EXAMPLES=0 -DBUILD_TESTING=0 $cmake_prefix_path -DASSIMP_B
 libjpeg_turbo_FLAGS="-DCMAKE_DEBUG_POSTFIX=_d -DENABLE_SHARED=0"
 libexpat_CMAKELIST="../../../sources/libexpat/expat/"
 libexpat_FLAGS="-DBUILD_shared=0 -DCMAKE_DEBUG_POSTFIX=_d"
-adobe_xmp_ORIGIN="https://siposcsaba89.visualstudio.com/DefaultCollection/_git/adobe_xmp"
+adobe_xmp_ORIGIN="https://github.com/siposcsaba89/adobe_xmp.git"
 adobe_xmp_FLAGS="-DXMP_BUILD_STATIC=1 -DCMAKE_DEBUG_POSTFIX=_d"
 adobe_xmp_CMAKELIST="../../../sources/adobe_xmp/build/"
-dng_sdk_ORIGIN="https://siposcsaba89.visualstudio.com/DefaultCollection/_git/dng_sdk"
+dng_sdk_ORIGIN="https://github.com/siposcsaba89/dng_sdk.git"
 dng_sdk_FLAGS="-DBUILD_EXAMPLES=1 -DCMAKE_DEBUG_POSTFIX=_d"
 eigen_ORIGIN="https://siposcsaba89.visualstudio.com/DefaultCollection/_git/eigen"
 eigen_FLAGS="-DBUILD_TESTING=1 -DCMAKE_DEBUG_POSTFIX=_d"
