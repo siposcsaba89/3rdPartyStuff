@@ -33,7 +33,7 @@ fi
 cmake_prefix_path="-DCMAKE_PREFIX_PATH=$PWD/install/$1"
 echo "Cmake prefix path set to $cmake_prefix_path"
 
-
+#apt install nasm libgles2-mesa-dev libxcursor-dev libxinerama-dev libxrandr-dev
 mkdir -p sources
 cd sources
 
@@ -43,7 +43,8 @@ if [ -z "$AMD_GLES_SDK" ]; then echo "AMD_GLES_SDK is unset"; else echo "AMD_GLE
 
 if [[ ("$1" == "linux") || !(-z "$AMD_GLES_SDK")]]; then
 	glfw_FLAGS="-DGLFW_CLIENT_LIBRARY=glesv2 -DGLFW_USE_EGL=1"
-	projs="glfw zlib freetype assimp imgui libjpeg-turbo libexpat adobe_xmp dng_sdk eigen"
+	projs="glfw zlib freetype imgui libjpeg-turbo libexpat adobe_xmp dng_sdk eigen"
+	#projs="adobe_xmp dng_sdk eigen"
         #assimp
 else
 	projs="glfw zlib freetype glew imgui libjpeg-turbo libexpat adobe_xmp dng_sdk eigen"
