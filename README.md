@@ -34,3 +34,5 @@ To build the 3rdPartys we need do the following:
 				-) arm64-v8a - build with the arm64-v8a toolchain (soft float, armv8a), 64-bit
 				-) x86 - build with the x86 toolchain 32-bit
 				-) x86-64 - build with the x86-64 toolchain 64-bit
+	3. Building on Ubuntu 18.04
+		a) These packages need to be installed: libxrandr-dev libxinerama-dev libxcursor-dev nasm
